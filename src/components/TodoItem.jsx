@@ -1,8 +1,8 @@
-function TodoItem () {
+function TodoItem ({ text }) {
   return (
     <li>
       <span>V</span>
-      <p>terimnar la escuela de javascrip</p>
+      <p>{text}</p>
       <span>X</span>
     </li>
   )
