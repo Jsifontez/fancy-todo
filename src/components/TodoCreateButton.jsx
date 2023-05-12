@@ -1,6 +1,8 @@
+import '../styles/TodoCreateButton.css'
+
 const TodoCreateButton = () => {
   return (
-    <button> + </button>
+    <button className='CreateTodoButton'> + </button>
     // <input type="button" value="+" />
   )
 }
