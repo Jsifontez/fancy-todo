@@ -9,7 +9,8 @@ import './App.css'
 const defaultTodos = [
   {text: 'Cortar Cebolla', completed: false},
   {text: 'terminar este cursito', completed: false},
-  {text: 'comer algo dulce', completed: true}
+  {text: 'comer algo dulce', completed: true},
+  {text: 'lalalalalalala', completed: true}
 ]
 
 function App() {
@@ -19,14 +20,21 @@ function App() {
   const completedTodos = todos.filter(todo => !!todo.completed).length
   const totalTodos = todos.length
 
+  const filterTodos = todos.filter(todo => {
+    const todoText = todo.text.toLocaleLowerCase()
+    const searchText = searchValue.toLocaleLowerCase()
+
+    return todoText.includes(searchText)
+  })
+
   return (
     <>
       <TodoCounter completed={completedTodos} total={totalTodos} />
 
-      <TodoSearch searchValue={searchValue} setSearchValue={searchValue} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {defaultTodos.map((todo) => (
+        {filterTodos.map((todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
