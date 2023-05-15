@@ -27,6 +27,11 @@ function App() {
     return todoText.includes(searchText)
   })
 
+  const deleteTodo = (todoPosition) => {
+    const newTodos = todos.filter((todo, index) => index !== todoPosition)
+    setTodos([...newTodos])
+  }
+
   return (
     <>
       <TodoCounter completed={completedTodos} total={totalTodos} />
@@ -34,11 +39,12 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {filterTodos.map((todo) => (
+        {filterTodos.map((todo, index) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            deleteTodo={() => deleteTodo(index)}
           />
         ))}
       </TodoList>
