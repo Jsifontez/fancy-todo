@@ -32,6 +32,12 @@ function App() {
     setTodos([...newTodos])
   }
 
+  const completeTodo = (todoPosition) => {
+    const newTodos = [...todos]
+    newTodos[todoPosition].completed = true
+    setTodos(newTodos)
+  }
+
   return (
     <>
       <TodoCounter completed={completedTodos} total={totalTodos} />
@@ -45,6 +51,7 @@ function App() {
             text={todo.text}
             completed={todo.completed}
             deleteTodo={() => deleteTodo(index)}
+            completeTodo={() => completeTodo(index)}
           />
         ))}
       </TodoList>
