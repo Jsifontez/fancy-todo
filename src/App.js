@@ -6,16 +6,29 @@ import { TodoItem } from './components/TodoItem'
 import { TodoCreateButton } from './components/TodoCreateButton'
 import './App.css'
 
-const defaultTodos = [
-  {text: 'Cortar Cebolla', completed: false},
-  {text: 'terminar este cursito', completed: false},
-  {text: 'comer algo dulce', completed: true},
-  {text: 'lalalalalalala', completed: true}
-]
+// const defaultTodos = [
+//   {text: 'Cortar Cebolla', completed: false},
+//   {text: 'terminar este cursito', completed: false},
+//   {text: 'comer algo dulce', completed: true},
+//   {text: 'lalalalalalala', completed: true}
+// ]
+
+// localStorage.setItem('FancyTODOS_V1', JSON.stringify(defaultTodos))
+// localStorage.removeItem('FancyTODO_V1')
+
+const initializedTodos = () => {
+  const todosFromStorage = localStorage.getItem('FancyTODOS_V1')
+  if (!todosFromStorage) {
+    localStorage.setItem('FancyTODOS_V1', JSON.stringify([]))
+    return []
+  }
+  
+  return JSON.parse(todosFromStorage)
+}
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
-  const [todos, setTodos] = useState(defaultTodos)
+  const [todos, setTodos] = useState(initializedTodos)
 
   const completedTodos = todos.filter(todo => !!todo.completed).length
   const totalTodos = todos.length
@@ -27,15 +40,20 @@ function App() {
     return todoText.includes(searchText)
   })
 
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('FancyTODOS_V1', JSON.stringify(newTodos))
+    setTodos(newTodos)
+  }
+
   const deleteTodo = (todoPosition) => {
     const newTodos = todos.filter((todo, index) => index !== todoPosition)
-    setTodos([...newTodos])
+    saveTodos([...newTodos])
   }
 
   const completeTodo = (todoPosition) => {
     const newTodos = [...todos]
     newTodos[todoPosition].completed = true
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
   return (
