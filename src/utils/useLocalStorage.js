@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 // const defaultTodos = [
 //   {text: 'Cortar Cebolla', completed: false},
@@ -11,24 +11,37 @@ import { useState } from 'react'
 // localStorage.removeItem('FancyTODO_V1')
 
 const useLocalStorage = (itemName, initialValue) => {
-  const initializeStorage = (itemName, initialValue) => {
-    const itemFromStorage = localStorage.getItem(itemName)
-    if (!itemFromStorage) {
-      localStorage.setItem(itemName, JSON.stringify(initialValue))
-      return initialValue
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+  const [item, setItem] = useState(initialValue)
+
+  useEffect(() => {
+    const initializeStorage = (itemName, initialValue) => {
+      try {
+        const itemFromStorage = localStorage.getItem(itemName)
+        if (!itemFromStorage) {
+          localStorage.setItem(itemName, JSON.stringify(initialValue))
+          return initialValue
+        }
+
+        setItem(JSON.parse(itemFromStorage))
+        setIsLoading(false)
+      } catch (error) {
+        setIsLoading(false)
+        setIsError(true)
+      }
     }
 
-    return JSON.parse(itemFromStorage)
-  }
+    setTimeout(() => initializeStorage(itemName, initialValue), 2000)
 
-  const [item, setItem] = useState(() => initializeStorage(itemName, initialValue))
+  }, [initialValue, itemName])
 
   const saveItem = (newItem) => {
     localStorage.setItem(itemName, JSON.stringify(newItem))
     setItem(newItem)
   }
 
-  return [item, saveItem]
+  return { item, saveItem, isLoading, isError}
 }
 
 export default useLocalStorage

@@ -4,7 +4,12 @@ import AppUI from './components/AppUI'
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
-  const [todos, setTodos] = useLocalStorage('FancyTODOS_V1', [])
+  const {
+    item: todos,
+    saveItem: setTodos,
+    isLoading,
+    isError
+  } = useLocalStorage('FancyTODOS_V1', [])
 
   const completedTodos = todos.filter(todo => !!todo.completed).length
   const totalTodos = todos.length
@@ -36,6 +41,8 @@ function App() {
       filterTodos={filterTodos}
       deleteTodo={deleteTodo}
       completeTodo={completeTodo}
+      isLoading={isLoading}
+      isError={isError}
     />
   )
 }

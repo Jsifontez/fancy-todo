@@ -13,6 +13,8 @@ function AppUI ({
   filterTodos,
   deleteTodo,
   completeTodo,
+  isLoading,
+  isError,
 }) {
   return (
     <>
@@ -21,20 +23,27 @@ function AppUI ({
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {filterTodos.map((todo, index) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            deleteTodo={() => deleteTodo(index)}
-            completeTodo={() => completeTodo(index)}
-          />
-        ))}
+        {isLoading && <p>Cargando...</p>}
+        {isError && <p>Algo salió mal, recarga la página</p>}
+        {!isLoading && filterTodos.length === 0 && <p>Crea tu primer TODO</p>}
+
+        {(!isLoading &&
+          !isError &&
+          filterTodos.length > 0) &&
+          filterTodos.map((todo, index) => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              deleteTodo={() => deleteTodo(index)}
+              completeTodo={() => completeTodo(index)}
+            />
+          ))}
       </TodoList>
 
       <TodoCreateButton />
     </>
-  )
+  );
 }
 
 export default AppUI
