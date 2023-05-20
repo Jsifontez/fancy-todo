@@ -1,0 +1,47 @@
+.LoadingItem {
+  background-color: #FAFAFA;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);
+  width: 100%;
+  height: 70px;
+  box-sizing: border-box;
+  padding: 0 24px;
+  overflow-x: hidden;
+}
+
+.item-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ededed;
+  border-radius: 50%;
+  z-index: 2;
+  mix-blend-mode: multiply;
+}
+
+.item--delete {
+  position: absolute;
+  top: -1px;
+  right: 24px;
+}
+
+.shadow {
+  background-color: #cecece;
+  background: linear-gradient(90deg, #fafafa 5%, #cecece 50%, #fafafa 95%);
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  top: 0;
+  z-index: 1;
+  transition-property: left;
+  animation: slide-in-out 3s linear infinite;
+}
+
+@keyframes slide-in-out {
+  from { left: -300px; }
+  to { left: 100%; }
+}

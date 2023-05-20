@@ -3,6 +3,8 @@ import TodoSearch from '../components/TodoSearch'
 import TodoList from '../components/TodoList'
 import { TodoItem } from '../components/TodoItem'
 import { TodoCreateButton } from '../components/TodoCreateButton'
+import { TodosLoading } from '../components/TodosLoading'
+import { TodosError } from '../components/TodosError'
 import '../styles/App.css'
 
 function AppUI ({
@@ -23,8 +25,8 @@ function AppUI ({
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {isLoading && <p>Cargando...</p>}
-        {isError && <p>Algo salió mal, recarga la página</p>}
+        {isLoading && <TodosLoading />}
+        {isError && <TodosError />}
         {!isLoading && filterTodos.length === 0 && <p>Crea tu primer TODO</p>}
 
         {(!isLoading &&
