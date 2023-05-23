@@ -6,8 +6,10 @@ import { TodoItem } from '../components/TodoItem'
 import { TodoCreateButton } from '../components/TodoCreateButton'
 import { TodosLoading } from '../components/TodosLoading'
 import { TodosError } from '../components/TodosError'
-import '../styles/App.css'
+import Modal from '../components/Modal'
+import { TodoForm } from './TodoForm'
 import { TodoContext } from './TodoContext'
+import '../styles/App.css'
 
 function AppUI () {
   const {
@@ -15,8 +17,10 @@ function AppUI () {
     isError,
     filterTodos,
     deleteTodo,
-    completeTodo
+    completeTodo,
+    isModalOpen
   } = useContext(TodoContext)
+
   return (
     <>
       <TodoCounter />
@@ -42,6 +46,12 @@ function AppUI () {
       </TodoList>
 
       <TodoCreateButton />
+
+      {isModalOpen && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
     </>
   );
 }

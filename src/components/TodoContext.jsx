@@ -5,6 +5,7 @@ const TodoContext = createContext()
 
 const TodoProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     item: todos,
     saveItem: setTodos,
@@ -21,6 +22,12 @@ const TodoProvider = ({ children }) => {
 
     return todoText.includes(searchText)
   })
+
+  const addTodo = (text) => {
+    const newTodos = [...todos]
+    newTodos.push({ text, completed: false })
+    setTodos(newTodos)
+  }
 
   const deleteTodo = (todoPosition) => {
     const newTodos = todos.filter((todo, index) => index !== todoPosition)
@@ -43,7 +50,10 @@ const TodoProvider = ({ children }) => {
       deleteTodo,
       completeTodo,
       isLoading,
-      isError
+      isError,
+      isModalOpen,
+      setIsModalOpen,
+      addTodo
     }}>
       { children }
     </TodoContext.Provider>
