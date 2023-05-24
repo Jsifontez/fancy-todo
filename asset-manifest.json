@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/fancy-todo/static/css/main.4cff86c0.css",
-    "main.js": "/fancy-todo/static/js/main.e7292764.js",
+    "main.css": "/fancy-todo/static/css/main.908733bc.css",
+    "main.js": "/fancy-todo/static/js/main.5041e6f5.js",
     "index.html": "/fancy-todo/index.html",
     "static/media/delete.svg": "/fancy-todo/static/media/delete.d9c7e0eeb3f573572e1521b7b69ed33e.svg",
     "static/media/check.svg": "/fancy-todo/static/media/check.af03c9a6a0411e40578874e6f00e807b.svg",
-    "main.4cff86c0.css.map": "/fancy-todo/static/css/main.4cff86c0.css.map",
-    "main.e7292764.js.map": "/fancy-todo/static/js/main.e7292764.js.map"
+    "main.908733bc.css.map": "/fancy-todo/static/css/main.908733bc.css.map",
+    "main.5041e6f5.js.map": "/fancy-todo/static/js/main.5041e6f5.js.map"
   },
   "entrypoints": [
-    "static/css/main.4cff86c0.css",
-    "static/js/main.e7292764.js"
+    "static/css/main.908733bc.css",
+    "static/js/main.5041e6f5.js"
   ]
 }
