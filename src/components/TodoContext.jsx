@@ -39,7 +39,7 @@ const TodoProvider = ({ children }) => {
 
   const completeTodo = (todoPosition) => {
     const newTodos = [...todos]
-    newTodos[todoPosition].completed = true
+    newTodos[todoPosition].completed = !newTodos[todoPosition].completed
     setTodos(newTodos)
   }
 
