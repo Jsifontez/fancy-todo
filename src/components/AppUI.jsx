@@ -30,22 +30,24 @@ function AppUI () {
       <TodoFilter />
 
       <TodoList>
-      {isLoading && <TodosLoading />}
-      {isError && <TodosError />}
-      {!isLoading && filterTodos.length === 0 && <p>Agrega un TODO</p>}
+        {isLoading && <TodosLoading />}
+        {isError && <TodosError />}
+        {!isLoading && filterTodos.length === 0 && (
+          <p style={{ textAlign: "center" }}>Agrega un TODO</p>
+        )}
 
-      {(!isLoading &&
-        !isError &&
-        filterTodos.length > 0) &&
-        filterTodos.map((todo, index) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            deleteTodo={() => deleteTodo(index)}
-            completeTodo={() => completeTodo(index)}
-          />
-        ))}
+        {!isLoading &&
+          !isError &&
+          filterTodos.length > 0 &&
+          filterTodos.map((todo, index) => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              deleteTodo={() => deleteTodo(index)}
+              completeTodo={() => completeTodo(index)}
+            />
+          ))}
       </TodoList>
 
       <TodoCreateButton />
