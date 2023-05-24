@@ -6,6 +6,9 @@ const TodoContext = createContext()
 const TodoProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  // to set which todo the user want to see
+  // true: for not completed; false: Completed
+  const [filter, setFilter] = useState(false)
   const {
     item: todos,
     saveItem: setTodos,
@@ -20,7 +23,7 @@ const TodoProvider = ({ children }) => {
     const todoText = todo.text.toLocaleLowerCase()
     const searchText = searchValue.toLocaleLowerCase()
 
-    return todoText.includes(searchText)
+    return todoText.includes(searchText) && todo.completed === filter
   })
 
   const addTodo = (text) => {
@@ -53,7 +56,9 @@ const TodoProvider = ({ children }) => {
       isError,
       isModalOpen,
       setIsModalOpen,
-      addTodo
+      addTodo,
+      filter,
+      setFilter
     }}>
       { children }
     </TodoContext.Provider>

@@ -8,6 +8,7 @@ import { TodosLoading } from '../components/TodosLoading'
 import { TodosError } from '../components/TodosError'
 import Modal from '../components/Modal'
 import { TodoForm } from './TodoForm'
+import { TodoFilter } from './TodoFilters'
 import { TodoContext } from './TodoContext'
 import '../styles/App.css'
 
@@ -26,10 +27,12 @@ function AppUI () {
       <TodoCounter />
       <TodoSearch />
 
+      <TodoFilter />
+
       <TodoList>
       {isLoading && <TodosLoading />}
       {isError && <TodosError />}
-      {!isLoading && filterTodos.length === 0 && <p>Crea tu primer TODO</p>}
+      {!isLoading && filterTodos.length === 0 && <p>Agrega un TODO</p>}
 
       {(!isLoading &&
         !isError &&

@@ -1,0 +1,27 @@
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  margin-top: 40px;
+  gap: 15px;
+}
+
+.filter {
+  width: 150px;
+  height: 100%;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  background-color: #F9FBFC;;
+  border-radius: 2px;
+  border: 2px solid #202329;
+  outline-color: #61DAFA;
+}
+
+.filter:hover {
+  background-color: rgba(139, 139, 139, 0.1);
+}
+
+.filter--selected {
+  font-weight: bold;
+  pointer-events: none;
+}
